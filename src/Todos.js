@@ -5,7 +5,14 @@ const TodosContext = createContext();
 const initValue = [];
 
 const reducers = {
-
+    add: (state, payload) => {
+        return [...state, payload];
+    },
+    remove: (state, payload) => {
+        const newState = [...state];
+        newState.splice(payload, 1);
+        return newState;
+    }
 }
 
 export function useTodos() {
@@ -27,7 +34,7 @@ export function useDispatch() {
 export function TodosProvider({ children }) {
 
     function masterReducer(state, action) {
-        reducers[action.type](state, action.payload);
+        return reducers[action.type](state, action.payload);
     }
 
     const TodosState = useReducer(masterReducer,initValue);

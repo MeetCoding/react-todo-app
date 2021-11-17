@@ -5,7 +5,7 @@ import AddTodoPanel from './components/AddTodoPanel';
 
 export default function App() {
     return (
-        <div className="">
+        <div className="w-screen h-screen max-w-xl py-14 flex flex-col">
             <SearchPanel />
             <TodosPanel />
             <AddTodoPanel />
