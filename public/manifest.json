@@ -3,6 +3,6 @@
   "name": "React Todo App",
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#F2E527",
+  "background_color": "#F2F2F0"
 }
