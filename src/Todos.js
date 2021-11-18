@@ -2,26 +2,40 @@ import React, { useReducer, useContext, createContext } from 'react';
 
 const TodosContext = createContext();
 
-const initValue = [];
+const initValue = [
+    {
+        content: "complete english project",
+        completed: true
+    },
+    {
+        content: "complete maths project",
+        completed: false
+    }
+];
 
 const reducers = {
-    add: (state, payload) => {
-        return [...state, payload];
+    add: (state, content) => {
+        return [...state, {content, completed: false}];
     },
-    remove: (state, payload) => {
+    remove: (state, index) => {
         const newState = [...state];
-        newState.splice(payload, 1);
+        newState.splice(index, 1);
+        return newState;
+    },
+    editComplete: (state, {index, complete}) => {
+        const newState = [...state];
+        newState[index].completed = complete;
         return newState;
     }
 }
 
 export function useTodos() {
-    const [todos, dispatch] = useContext(TodosContext);
+    const todos = useContext(TodosContext)[0];
     return todos;
 }
 
 export function useDispatch() {
-    const [todos, dispatch] = useContext(TodosContext);
+    const dispatch = useContext(TodosContext)[1];
     return (type, payload) => {
         const action = {
             type,
