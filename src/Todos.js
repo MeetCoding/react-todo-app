@@ -2,16 +2,7 @@ import React, { useReducer, useContext, createContext } from 'react';
 
 const TodosContext = createContext();
 
-const initValue = [
-    {
-        content: "complete english project",
-        completed: true
-    },
-    {
-        content: "complete maths project",
-        completed: false
-    }
-];
+const initValue = [];
 
 const reducers = {
     add: (state, content) => {
