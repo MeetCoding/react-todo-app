@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useDispatch } from './../Todos';
 
 export default function AddTodoPanel() {
@@ -11,18 +11,18 @@ export default function AddTodoPanel() {
         contentRef.current = newContent;
     }
 
-    const addTodo = () => {
+    const addTodo = useCallback(() => {
         if (contentRef.current) 
             dispatch("add", contentRef.current);
         setContent("");
-    }
+    }, [dispatch])
 
     useEffect(() => {
         window.addEventListener("keydown", e => {
             if(e.key === "Enter")
                 addTodo();
         })
-    }, [])
+    }, [addTodo])
 
     return (
         <div className="flex items-center bg-white p-5 rounded-md border-yellow border-l-8">
